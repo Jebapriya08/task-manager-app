@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task Manager</title>
+
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <h1>Task Manager</h1>
+
+    <!-- Add Task Form -->
+    <form method="POST" action="/add">
+
+        <input 
+            type="text" 
+            name="task" 
+            placeholder="Enter a task"
+            required
+        >
+
+        <button type="submit">
+            Add Task
+        </button>
+
+    </form>
+
+
+    <h3>Tasks:</h3>
+
+    <!-- Task List -->
+    <ul>
+{% for task in tasks %}
+    <li>
+        {{ task[1] }}
+        <small>({{ task[2] }})</small>
+
+        <a href="/edit/{{ task[0] }}">Edit</a>
+        <a href="/delete/{{ task[0] }}">Delete</a>
+    </li>
+{% endfor %}
+</ul>
+
+
+</body>
+
+</html>
